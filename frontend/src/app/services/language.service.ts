@@ -23,6 +23,8 @@ export interface Translations {
   projects: {
     projects: string;
     loading: string;
+    liveDemos?: string;
+    repositories?: string;
   };
 }
 
@@ -47,6 +49,8 @@ const translations: Record<Language, Translations> = {
     projects: {
       projects: 'Projects',
       loading: 'Loading...',
+      liveDemos: 'Live Demos',
+      repositories: 'Code Repositories',
     },
   },
   de: {
@@ -69,6 +73,8 @@ const translations: Record<Language, Translations> = {
     projects: {
       projects: 'Projekte',
       loading: 'Lädt...',
+      liveDemos: 'Live-Demos',
+      repositories: 'Code-Repositories',
     },
   },
   fr: {
@@ -91,6 +97,8 @@ const translations: Record<Language, Translations> = {
     projects: {
       projects: 'Projets',
       loading: 'Chargement...',
+      liveDemos: 'Démos en direct',
+      repositories: 'Dépôts de code',
     },
   },
   es: {
@@ -113,6 +121,8 @@ const translations: Record<Language, Translations> = {
     projects: {
       projects: 'Proyectos',
       loading: 'Cargando...',
+      liveDemos: 'Demos en vivo',
+      repositories: 'Repositorios de código',
     },
   },
 };
