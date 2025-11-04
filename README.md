@@ -1,11 +1,23 @@
 # Portfolio Website (Angular + FastAPI)
 
-A modern, professional portfolio to showcase skills and projects.
+A modern, professional portfolio to showcase skills and projects. It includes a multilingual frontend, clickable project cards with detail pages, and a Wikipedia article analyzer with rich filtering and charts.
 
 ## Tech Stack
 - Frontend: Angular (SCSS, Angular Material)
 - Backend: FastAPI (Python)
 - Data: Static JSON in API for profile, skills, and projects
+
+## Features
+- Multilingual UI (EN, DE, FR, ES) with a simple language switcher
+- Custom blue “D” SVG logo integrated across the site
+- Projects overview with clickable cards and detail routes (`/projects/:id`)
+- Wikipedia Analyzer:
+	- Paste a Wikipedia URL (EN/DE supported) and analyze word frequencies
+	- Auto-detected stop words (English/German) toggle
+	- Exclude words manually via checkbox list; excluded words appear as removable chips
+	- Slider and number input to choose how many top words to display (1–100)
+	- Bar/pie chart toggle with dynamic colors and updated titles
+- Clean, modular backend (routers/services/app factory)
 
 ## Prerequisites
 - Windows 10/11
@@ -24,7 +36,7 @@ py -3.11 -m venv venv
 
 ### Run (dev)
 ```bash
-# In project root
+# In project root (PowerShell)
 ./venv/Scripts/python -m uvicorn backend.app.main:app --reload
 # API at http://127.0.0.1:8000
 ```
@@ -48,41 +60,41 @@ py -3.11 -m venv venv
 
 ## Frontend: Angular
 
-### Scaffold
+### Install & run (dev)
 ```bash
-# In project root (PowerShell may block npx; use cmd):
-cmd /c "npx --yes @angular/cli@18 new frontend --style=scss --routing --skip-git --strict --package-manager npm"
-cd frontend
-npm install
-```
-
-### Recommended UI
-```bash
-# Add Angular Material
-ng add @angular/material --defaults --skip-confirmation
-```
-
-### Pages to create
-- `Landing` - hero with title, key skills bullets, CTA link to About
-- `About` - detailed bio, experience highlights
-- `Projects` - blog-style cards with GitHub links (fetched from API)
-
-### Dev Run
-```bash
-# In backend/
-uvicorn backend.app.main:app --reload
-# App at http://127.0.0.1:8000/api/
 # In frontend/
+npm install
 npm start
 # App at http://localhost:4200
 ```
 
-## Connect Frontend to Backend
-- Ensure backend runs at `http://127.0.0.1:8000` (CORS enabled for `http://localhost:4200`)
-- Create an Angular service to call `/api/profile`, `/api/skills`, `/api/projects`
+### Optional: SSR preview (Node/Express)
+```bash
+# In frontend/
+npm run build
+npm run serve:ssr:frontend
+# SSR server at http://localhost:4000
+```
 
-## Next Steps
-- Dockerize frontend + backend
+## Connect Frontend to Backend
+- Ensure backend runs at `http://127.0.0.1:8000` (CORS enabled for `http://localhost:4200`).
+- Frontend calls are configured in `frontend/src/app/services/api.service.ts` via `baseUrl`.
+- Endpoints used: `/api/profile`, `/api/skills`, `/api/projects`, `/api/scrape-wikipedia`.
+
+## Architecture
+```
+backend/
+	app/
+		core/app.py            # FastAPI app factory + CORS + router wiring
+		api/routers/*.py       # profile, skills, projects, wikipedia, health
+		services/
+			wiki_scraper.py      # scraping + text processing
+			constants.py         # stop-word sets (EN/DE + technical)
+frontend/
+	src/app/
+		pages/                 # landing, about, projects, project-detail
+		services/              # api + language services
+```
 
 ## Notes
 - If PowerShell blocks `npx`, prefix with `cmd /c` or run in Command Prompt.
@@ -99,5 +111,14 @@ docker compose up --build
 ### Images
 - Backend: defined in `backend/Dockerfile` (Python 3.11 + Uvicorn)
 - Frontend: `frontend/Dockerfile` builds Angular and serves via NGINX
+
+## Troubleshooting
+- PowerShell blocked `npx`: prefix with `cmd /c` or use Command Prompt.
+- CORS errors: confirm backend runs at `127.0.0.1:8000` and CORS allows `http://localhost:4200`.
+- Wikipedia 403 errors: backend sends browser-like headers; ensure the URL is a full Wikipedia article link.
+
+---
+
+See `frontend/README.md` for frontend-specific details and workflows.
 
 
