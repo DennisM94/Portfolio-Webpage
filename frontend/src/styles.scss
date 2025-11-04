@@ -1,0 +1,242 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --bg: #0b1020;
+  --bg-elev: #111834;
+  --text: #e6e9f0;
+  --muted: #aab2c5;
+  --primary: #3b82f6;
+  --primary-600: #2563eb;
+  --border: #1b2347;
+  --hue: 270; /* base hue (purple) */
+  --sat: 60;  /* percent */
+  --lum: 28;  /* percent */
+}
+
+/* Register animatable custom properties */
+@property --hue {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 270;
+}
+@property --sat {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 60;
+}
+@property --lum {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 28;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+    --grad-pos: 60%;
+    --grad-bg-x: 50%;
+    --grad-bg-y: 0%;
+    background: linear-gradient(45deg, #10162a 0%, #1e2a4a var(--grad-pos,60%), #3b82f6 100%);
+    background-position: var(--grad-bg-x,50%) var(--grad-bg-y,0%);
+    background-size: 200% 200%;
+    background-attachment: fixed;
+  /* Soft, calm animation: gentle hue shift with tiny sat/lum breathing */
+  animation: hueShift 28s ease-in-out infinite alternate;
+}
+
+@keyframes hueShift {
+  0%   { --hue: 255; --sat: 58; --lum: 27; }
+  50%  { --hue: 290; --sat: 62; --lum: 29; }
+  100% { --hue: 315; --sat: 56; --lum: 26; }
+}
+
+/* Layered gradient field reacting to --hue/--sat/--lum */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -15% -15% 0 -15%;
+  z-index: -1;
+  background:
+    radial-gradient(70% 45% at 80% -10%, hsl(var(--hue) calc(var(--sat) * 1%) calc(var(--lum) * 1%) / 0.45), transparent 70%),
+    radial-gradient(60% 40% at 15% -20%, hsl(calc(var(--hue) + 32) calc((var(--sat) + 6) * 1%) calc((var(--lum) + 2) * 1%) / 0.38), transparent 72%),
+    radial-gradient(35% 25% at 10% 110%, hsl(calc(var(--hue) - 24) calc((var(--sat) - 4) * 1%) calc((var(--lum) - 2) * 1%) / 0.28), transparent 75%);
+  filter: saturate(115%) blur(0.2px);
+}
+
+/* Additional color gradient from bottom-left that moves on scroll */
+body::after {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 60%;
+  height: 50%;
+  z-index: -1;
+  background: radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+  opacity: var(--bottom-left-opacity, 0);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+app-root, app-landing, app-about, app-projects {
+  display: block;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--primary);
+  color: white;
+  transition: transform .12s ease, background .2s ease, color .2s ease;
+}
+.button:hover { background: var(--primary-600); transform: translateY(-1px); }
+.button--ghost { background: transparent; color: var(--text); }
+/* Active state applied via routerLinkActive */
+.button.is-active { background: var(--primary); color: #fff; }
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  backdrop-filter: saturate(130%) blur(8px);
+  background: color-mix(in oklab, var(--bg-elev) 70%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+.header__inner {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 60px;
+}
+.brand { font-weight: 700; letter-spacing: 0.2px; }
+.nav { display: flex; gap: 8px; }
+
+/* Circular brand and menu button */
+.brand-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 999px;
+  border: 2px solid var(--text);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+}
+.circle-btn {
+  width: 40px; height: 40px; border-radius: 999px; border: 0; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.circle-btn--solid { background: #0f0f10; color: #fff; }
+.circle-btn--solid:hover { background: #1a1a1c; }
+.circle-btn--lang { 
+  background: rgba(255,255,255,0.08); 
+  color: #fff; 
+  font-size: 11px; 
+  font-weight: 700;
+  border: 1px solid var(--border);
+}
+.circle-btn--lang:hover { 
+  background: rgba(255,255,255,0.14); 
+  transform: scale(1.05);
+}
+
+/* Language selector dropdown */
+.lang-selector {
+  position: relative;
+}
+.lang-dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  min-width: 140px;
+  z-index: 100;
+  padding: 8px;
+  animation: menuSlideIn 0.2s ease-out;
+}
+.lang-option {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: background 0.15s;
+}
+.lang-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.lang-option.active {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  font-weight: 600;
+}
+@keyframes menuSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.burger-lines { position: relative; width: 18px; height: 2px; background: #fff; display: inline-block; }
+.burger-lines::before, .burger-lines::after { content: ''; position: absolute; left: 0; right: 0; height: 2px; background: #fff; }
+.burger-lines::before { top: -6px; }
+.burger-lines::after { top: 6px; }
+
+/* Menu overlay and panel */
+.menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.2); backdrop-filter: blur(2px); z-index: 90; }
+.actions--menu { position: relative; display:flex; align-items: center; gap: 10px; }
+.menu-panel { 
+  position: fixed; 
+  right: calc(24px + 40px + 10px);
+  top: 60px; 
+  width: 220px; 
+  z-index: 100; 
+}
+.menu-link { display:block; padding:10px 8px; color: var(--text); text-decoration: none; border-radius:8px; }
+.menu-link:hover { background: rgba(255,255,255,0.06); }
+.menu-link.is-active { background: rgba(255,255,255,0.1); }
+
+.hero {
+  padding: 96px 0 64px;
+  text-align: center;
+}
+.hero h1 { font-size: 48px; line-height: 1.1; margin: 0 0 8px; }
+.hero .subtitle { color: var(--muted); margin: 0 0 24px; }
+.hero .actions { display: flex; gap: 12px; justify-content: center; margin-top: 12px; }
+
+.section { padding: 40px 0; }
+.card {
+  background: color-mix(in oklab, var(--bg-elev) 85%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.card--pad { padding: 20px; }
+
+/* Chips */
+.chip { display:inline-block; font-size: 0.9rem; }
