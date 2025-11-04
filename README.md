@@ -19,7 +19,7 @@ A modern, professional portfolio to showcase skills and projects.
 # In project root
 py -3.11 -m venv venv
 ./venv/Scripts/python -m pip install --upgrade pip
-./venv/Scripts/python -m pip install fastapi "uvicorn[standard]"
+./venv/Scripts/python -m pip install -r requirements.txt
 ```
 
 ### Run (dev)
@@ -34,6 +34,17 @@ py -3.11 -m venv venv
 - GET `/api/profile` - name, title, about, links
 - GET `/api/skills` - categorized skills
 - GET `/api/projects` - latest projects (blog-style list)
+- POST `/api/scrape-wikipedia` - analyze a Wikipedia article and return top word frequencies
+	- Request JSON:
+		- `url` (string, required) - Wikipedia article URL
+		- `filterStopWords` (boolean) - if true, auto-detected EN/DE stop words are filtered
+		- `excludedWords` (string[], optional) - additional words to exclude
+	- Response JSON (subset):
+		- `words`: string[] - top up to 100 words
+		- `counts`: number[] - matching counts for each word
+		- `total_words`: number - total words after filtering
+		- `unique_words`: number - number of unique words after filtering
+		- `detected_language`: "english" | "german" | "unknown"
 
 ## Frontend: Angular
 

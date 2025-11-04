@@ -137,7 +137,7 @@ export class LandingComponent {
 
   experiencesEn = [
     {
-      role: 'Data Science/ Engineering (Working Student)',
+      role: 'Data Science/ Engineer (Working Student)',
       company: 'MTU Aero Engines',
       period: 'Apr. 2025 – Present',
       location: 'Munich, Bavaria, Germany',

@@ -24,6 +24,12 @@ export interface Project {
   tags: string[];
   githubUrl?: string;
   liveUrl?: string;
+  description?: string;
+  techStack?: string[];
+  features?: string[];
+  howToUse?: string;
+  screenshots?: string[];
+  interactive?: boolean;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -42,6 +48,12 @@ export class ApiService {
   getProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(`${this.baseUrl}/projects`);
   }
+
+  scrapeWikipedia(url: string, filterStopWords: boolean = true, excludedWords: string[] = []): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/scrape-wikipedia`, { 
+      url, 
+      filterStopWords, 
+      excludedWords 
+    });
+  }
 }
-
-
