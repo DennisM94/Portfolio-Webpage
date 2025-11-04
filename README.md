@@ -47,7 +47,7 @@ npm install
 
 ### Recommended UI
 ```bash
-# Add Angular Material (choose Indigo/Pink, global typography, animations)
+# Add Angular Material
 ng add @angular/material --defaults --skip-confirmation
 ```
 
@@ -60,6 +60,7 @@ ng add @angular/material --defaults --skip-confirmation
 ```bash
 # In backend/
 uvicorn backend.app.main:app --reload
+# App at http://127.0.0.1:8000/api/
 # In frontend/
 npm start
 # App at http://localhost:4200
