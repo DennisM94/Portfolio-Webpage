@@ -23,6 +23,7 @@ export interface Project {
   summary: string;
   tags: string[];
   githubUrl?: string;
+  liveUrl?: string;
 }
 
 @Injectable({ providedIn: 'root' })

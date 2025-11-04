@@ -19,8 +19,8 @@ const calcTargetGrad = () => {
   const doc = document.documentElement;
   const scrollTop = window.scrollY || doc.scrollTop;
   const scrollHeight = doc.scrollHeight - doc.clientHeight;
-  // Map scroll position to 40% - 80%
-  return 40 + 40 * (scrollTop / (scrollHeight || 1));
+  // Map scroll position to 40% - 67% (so 33% remains light blue at the end)
+  return 40 + 27 * (scrollTop / (scrollHeight || 1));
 };
 const calcTargetBgY = () => {
   const doc = document.documentElement;

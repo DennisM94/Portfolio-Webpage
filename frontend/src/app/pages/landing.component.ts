@@ -65,9 +65,8 @@ import { LanguageService } from '../services/language.service';
     .hero-left { text-align: left; }
     .headline { font-size: clamp(36px, 6vw, 72px); line-height: 1.05; margin: 0 0 8px; letter-spacing: -0.5px; font-weight: 800; }
     .hl-primary { background: linear-gradient(90deg, #60a5fa, #a5b4fc); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .hl-sep { color: var(--muted); opacity: .7; }
-    .hl-sep { color: var(--muted); opacity: .7; }
-    .hl-role { color: var(--muted); font-weight: 600; }
+    .hl-sep { color: #a6afbbff; opacity: 1; }
+    .hl-role { color: #a6afbbff; font-weight: 600; }
     .hero-actions { display:flex; gap: 10px; margin-top: 12px; }
     .hero-right { display:flex; justify-content: flex-end; }
     .avatar { width: 180px; height: 180px; border-radius: 999px; object-fit: cover; border: 3px solid var(--border); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
