@@ -30,10 +30,10 @@ py -3.11 -m venv venv
 ```
 
 ### API Endpoints
-- GET `/api/health` — service status
-- GET `/api/profile` — name, title, about, links
-- GET `/api/skills` — categorized skills
-- GET `/api/projects` — latest projects (blog-style list)
+- GET `/api/health` - service status
+- GET `/api/profile` - name, title, about, links
+- GET `/api/skills` - categorized skills
+- GET `/api/projects` - latest projects (blog-style list)
 
 ## Frontend: Angular
 
@@ -52,13 +52,13 @@ ng add @angular/material --defaults --skip-confirmation
 ```
 
 ### Pages to create
-- `Landing` — hero with title, key skills bullets, CTA link to About
-- `About` — detailed bio, experience highlights
-- `Projects` — blog-style cards with GitHub links (fetched from API)
+- `Landing` - hero with title, key skills bullets, CTA link to About
+- `About` - detailed bio, experience highlights
+- `Projects` - blog-style cards with GitHub links (fetched from API)
 
 ### Dev Run
 ```bash
-# in backend/
+# In backend/
 uvicorn backend.app.main:app --reload
 # In frontend/
 npm start
@@ -70,9 +70,7 @@ npm start
 - Create an Angular service to call `/api/profile`, `/api/skills`, `/api/projects`
 
 ## Next Steps
-- Add content and images
-- Polish responsive design
-- Optional: Dockerize frontend + backend
+- Dockerize frontend + backend
 
 ## Notes
 - If PowerShell blocks `npx`, prefix with `cmd /c` or run in Command Prompt.

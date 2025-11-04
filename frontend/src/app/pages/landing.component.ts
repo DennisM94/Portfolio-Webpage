@@ -13,7 +13,7 @@ import { LanguageService } from '../services/language.service';
       <div class="hero-left">
         <h1 class="headline">
           <span class="hl-primary">{{ profile?.name || 'Dennis' }}</span>
-          <span class="hl-sep"> — </span>
+          <span class="hl-sep"> - </span>
           <span class="hl-role">{{ getProfileTitle() }}</span>
         </h1>
         <p class="subtitle">Python · Java (Quarkus) · C#/.NET · Angular</p>

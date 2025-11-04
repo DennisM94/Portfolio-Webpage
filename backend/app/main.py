@@ -31,26 +31,26 @@ def get_profile() -> Dict[str, Any]:
         "location": "Munich, Germany",
         "about": {
             "en": (
-                "Engineer experienced in Python, Java (Quarkus), C#/.NET, and Angular. "
+                "Software Engineer experienced in Python, Java (Quarkus), C#/.NET, and Angular. "
                 "Comfortable across data and platform tooling including PostgreSQL, Kubernetes (Rancher + Harbor), Docker, Tableau, and Denodo."
             ),
             "de": (
-                "Ingenieur mit Erfahrung in Python, Java (Quarkus), C#/.NET und Angular. "
+                "Software Engineer mit Erfahrung in Python, Java (Quarkus), C#/.NET und Angular. "
                 "Vertraut mit Daten- und Plattform-Tools wie PostgreSQL, Kubernetes (Rancher + Harbor), Docker, Tableau und Denodo."
             ),
             "fr": (
-                "Ingénieur expérimenté en Python, Java (Quarkus), C#/.NET et Angular. "
+                "Software Engineer expérimenté en Python, Java (Quarkus), C#/.NET et Angular. "
                 "À l'aise avec les outils de données et de plateforme, notamment PostgreSQL, Kubernetes (Rancher + Harbor), Docker, Tableau et Denodo."
             ),
             "es": (
-                "Ingeniero con experiencia en Python, Java (Quarkus), C#/.NET y Angular. "
+                "Software Engineer con experiencia en Python, Java (Quarkus), C#/.NET y Angular. "
                 "Cómodo con herramientas de datos y plataformas, incluidos PostgreSQL, Kubernetes (Rancher + Harbor), Docker, Tableau y Denodo."
             )
         },
         "links": {
             "github": "https://github.com/DennisM94",
             "linkedin": "https://www.linkedin.com/in/dennis-m%C3%BCnchehofe-18259a1b6/",
-            "website": "",
+            "website": "http://localhost:4200/",
         },
     }
 

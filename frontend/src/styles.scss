@@ -69,21 +69,6 @@ body::before {
   filter: saturate(115%) blur(0.2px);
 }
 
-/* Additional color gradient from bottom-left that moves on scroll */
-body::after {
-  content: '';
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 60%;
-  height: 50%;
-  z-index: -1;
-  background: radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
-  opacity: var(--bottom-left-opacity, 0);
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
 app-root, app-landing, app-about, app-projects {
   display: block;
 }
