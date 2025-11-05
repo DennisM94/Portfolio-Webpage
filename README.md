@@ -57,6 +57,9 @@ py -3.11 -m venv venv
 		- `total_words`: number - total words after filtering
 		- `unique_words`: number - number of unique words after filtering
 		- `detected_language`: "english" | "german" | "unknown"
+- POST `/api/merge-pdfs` - merge multiple uploaded PDFs and return a single PDF
+	- Request: `multipart/form-data` with one or more `files` fields (PDFs only)
+	- Response: `application/pdf` with `Content-Disposition: attachment; filename=merged.pdf`
 
 ## Frontend: Angular
 

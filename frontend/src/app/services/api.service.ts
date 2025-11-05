@@ -56,4 +56,10 @@ export class ApiService {
       excludedWords 
     });
   }
+
+  mergePdfs(files: File[]): Observable<Blob> {
+    const form = new FormData();
+    files.forEach((f) => form.append('files', f, f.name));
+    return this.http.post<Blob>(`${this.baseUrl}/merge-pdfs`, form, { responseType: 'blob' as 'json' });
+  }
 }
