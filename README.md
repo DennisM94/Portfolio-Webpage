@@ -122,6 +122,6 @@ docker compose up --build
 
 ---
 
-See `frontend/README.md` for frontend-specific details and workflows.
+See the `frontend/README.md` for frontend-specific details and workflows.
 
 
